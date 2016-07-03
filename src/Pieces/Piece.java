@@ -128,7 +128,7 @@ public class Piece {
             if(!isPathFree(x,y))
                 return false;
         //If it from the same player you cannot go there
-        if(Board.getInstance().getPieceAtPos(x,y).color == color)
+        if(Board.getInstance().getPieceAtPos(x,y).color != null && Board.getInstance().getPieceAtPos(x,y).color == color)
             return false;
 
         return true;

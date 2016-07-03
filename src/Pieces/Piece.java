@@ -27,6 +27,10 @@ public class Piece {
         this.type = type;
     }
 
+    public String getType(){
+        return this.type;
+    }
+
     public boolean isPathFree(int x, int y){
         if (x-this.x==0 || y-this.y==0){
             if (y==this.y && x>this.x){
@@ -130,6 +134,7 @@ public class Piece {
         return true;
 
     }
+
     boolean isOutOfBounds(int x, int y){
         if (x < 0 || y < 0 || x > Board.getInstance().getSize()-1 || y > Board.getInstance().getSize()-1)
             return false;

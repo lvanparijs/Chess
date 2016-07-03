@@ -3,7 +3,7 @@ package Pieces;
 /**
  * Created by Locoge on 3-7-2016.
  */
-public class Knight implements Piece {
+public class Knight extends Piece {
 
 }
 

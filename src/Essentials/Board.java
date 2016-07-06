@@ -31,8 +31,8 @@ public class Board {
     }
 
 
-
     public void printBoard(){
+        System.out.print("0 1 2 3 4 5 6 7 \n");
         for (int i=0; i<spaces.length;i++){
             for (int j=0; j<spaces.length;j++){
                 //String x = Board.getInstance().spaces[j][i].getType();
@@ -45,20 +45,21 @@ public class Board {
                 }
 
             }
-            System.out.println();
-        }
-    }
 
+            System.out.println(i);
+        }
+        System.out.println();
+    }
 
 
     public void init(){
         spaces[0][0] = new Rook(0,0,Color.black);
-        spaces[1][0] = new Knight(1,0,Color.black);
+        spaces[1][0] = new Horse(1,0,Color.black);
         spaces[2][0] = new Bishop(2,0,Color.black);
         spaces[3][0] = new Queen(3,0,Color.black);
         spaces[4][0] = new King(4,0,Color.black);
         spaces[5][0] = new Bishop(5,0,Color.black);
-        spaces[6][0] = new Knight(6,0,Color.black);
+        spaces[6][0] = new Horse(6,0,Color.black);
         spaces[7][0] = new Rook(7,0,Color.black);
         spaces[0][1] = new Pawn(0,1,Color.black);
         spaces[1][1] = new Pawn(1,1,Color.black);
@@ -70,12 +71,12 @@ public class Board {
         spaces[7][1] = new Pawn(7,1,Color.black);
 
         spaces[0][7] = new Rook(0,7,Color.white);
-        spaces[1][7] = new Knight(1,7,Color.white);
+        spaces[1][7] = new Horse(1,7,Color.white);
         spaces[2][7] = new Bishop(2,7,Color.white);
         spaces[3][7] = new Queen(3,7,Color.white);
         spaces[4][7] = new King(4,7,Color.white);
         spaces[5][7] = new Bishop(5,7,Color.white);
-        spaces[6][7] = new Knight(6,7,Color.white);
+        spaces[6][7] = new Horse(6,7,Color.white);
         spaces[7][7] = new Rook(7,7,Color.white);
         spaces[0][6] = new Pawn(0,6,Color.white);
         spaces[1][6] = new Pawn(1,6,Color.white);
@@ -92,6 +93,23 @@ public class Board {
         return size;
     }
 
+    public boolean myPiece(int x, int y, Color color){
+        if (spaces[x][y] == null) {
+            return false;
+        }
+        else if (spaces[x][y].getColor() != color){
+            return false;
+        }
+        else return true;
+    }
+    public boolean isTie(){
+        return false;
+    }
+
+    public boolean isCheckmate(){
+
+        return false;
+    }
     public Piece getPieceAtPos(int x, int y){
         return spaces[x][y];
     }

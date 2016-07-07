@@ -18,7 +18,12 @@ public class Rook extends Piece {
 
     public boolean isLegal(int x, int y){
         int [] displacement = {x-this.x, y-this.y};
-        return Arrays.asList(legalR).contains(displacement);
+        for(int i = 0; i < legalR.length; i++){
+            if(legalR[i][0] == displacement[0] && legalR[i][1] == displacement[1]) {
+                return true;
+            }
+        }
+        return false;
     }
 }
 

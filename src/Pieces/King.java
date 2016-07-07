@@ -14,6 +14,11 @@ public class King extends Piece {
 
     public boolean isLegal(int x, int y){
         int [] displacement = {x-this.x, y-this.y};
-        return Arrays.asList(legalK).contains(displacement);
+        for(int i = 0; i < legalK.length; i++){
+            if(legalK[i][0] == displacement[0] && legalK[i][1] == displacement[1]) {
+                return true;
+            }
+        }
+        return false;
     }
 }

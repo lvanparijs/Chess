@@ -13,33 +13,40 @@ public class Main {
 
     public static void main(String[] args)
     {
-        Board board = new Board();
+        Board board = Board.getInstance();
 
         Player player1 = new Human(Color.white);
         Player player2 = new Human(Color.black);
 
-        Player turn = player2;
+        boolean white = false;
 
         board.printBoard();
+        System.out.println("================");
         board.init();
         board.printBoard();
 
         Scanner input = new Scanner(System.in);
 
         do {
-            turn.changeColor();
+            white = !white;
 
 
             int x1;
             int y1;
-            do {System.out.printf("%s, it is your turn, please choose two set of coordinates\n", turn.getColor());
+            do {
+                if(white){
+                    System.out.printf("%s, it is your turn, please choose two set of coordinates\n", "White");
+                }else{
+                    System.out.printf("%s, it is your turn, please choose two set of coordinates\n", "Black");
+                }
                 System.out.print("Choose the piece you want to move (first x then y): ");
                 x1 = input.nextInt();
                 y1 = input.nextInt();
-            } while (!board.myPiece(x1, y1, turn.getColor()));
+            } while (!board.myPiece(x1, y1, white));
 
 
             Piece piece = board.getPieceAtPos(x1,y1);
+            System.out.println(piece.getType());
             int x2;
             int y2;
 
@@ -48,7 +55,7 @@ public class Main {
                 y2 = input.nextInt();
             } while (!piece.isPossible(x2,y2));
 
-
+            System.out.println("MOVE");
             piece.move(x2,y2);
 
             board.printBoard();
@@ -62,7 +69,12 @@ public class Main {
         }
 
         if (board.isCheckmate()) {
-            System.out.printf("%s won!", turn.getColor());
+            if(white){
+                System.out.printf("%s won!", "White");
+            }else{
+                System.out.printf("%s won!", "Black");
+            }
+
         }
 
 

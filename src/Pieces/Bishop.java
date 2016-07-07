@@ -19,7 +19,12 @@ public class Bishop extends Piece{
 
     public boolean isLegal(int x, int y){
         int [] displacement = {x-this.x, y-this.y};
-        return Arrays.asList(legalB).contains(displacement);
+        for(int i = 0; i < legalB.length; i++){
+            if(legalB[i][0] == displacement[0] && legalB[i][1] == displacement[1]) {
+                return true;
+            }
+        }
+        return false;
 
     }
 }

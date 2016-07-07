@@ -21,7 +21,12 @@ public class Queen extends Piece {
 
     public boolean isLegal(int x, int y){
         int [] displacement = {x-this.x, y-this.y};
-        return Arrays.asList(legalQ).contains(displacement);
+        for(int i = 0; i < legalQ.length; i++){
+            if(legalQ[i][0] == displacement[0] && legalQ[i][1] == displacement[1]) {
+                return true;
+            }
+        }
+        return false;
     }
 }
 

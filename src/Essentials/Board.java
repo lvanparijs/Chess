@@ -1,8 +1,10 @@
 package Essentials;
 
 import Pieces.*;
+import javafx.scene.paint.*;
 
 import java.awt.*;
+import java.awt.Color;
 
 /**
  * Created by Locoge on 3-7-2016.
@@ -93,11 +95,8 @@ public class Board {
         return size;
     }
 
-    public boolean myPiece(int x, int y, Color color){
-        if (spaces[x][y] == null) {
-            return false;
-        }
-        else if (spaces[x][y].getColor() != color){
+    public boolean myPiece(int x, int y, boolean white){
+        if (spaces[x][y] == null || ((spaces[x][y].getColor() == Color.WHITE) != white) ) {
             return false;
         }
         else return true;
@@ -112,5 +111,10 @@ public class Board {
     }
     public Piece getPieceAtPos(int x, int y){
         return spaces[x][y];
+    }
+
+    public void moveXtoY(int x1, int y1, int x2, int y2){
+        spaces[x2][y2] = spaces[x1][y1];
+        spaces[x1][y1] = null;
     }
 }

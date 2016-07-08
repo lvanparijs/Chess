@@ -22,8 +22,6 @@ public abstract class Piece {
     int x;
     int y;
 
-    boolean alive = true;
-
     Color color;
 
     String type;
@@ -40,7 +38,6 @@ public abstract class Piece {
                     if (Board.getInstance().isOccupied(i,y)){
                         return false;
                     }
-                    return true;
                 }
             }
             if (y==this.y && x<this.x){
@@ -48,7 +45,6 @@ public abstract class Piece {
                     if (Board.getInstance().isOccupied(i,y)){
                         return false;
                     }
-                    return true;
                 }
             }
             if (x==this.x && y>this.y){
@@ -56,7 +52,6 @@ public abstract class Piece {
                     if (Board.getInstance().isOccupied(x,i)){
                         return false;
                     }
-                    return true;
                 }
             }
             if (x==this.x && y<this.y){
@@ -64,43 +59,39 @@ public abstract class Piece {
                     if (Board.getInstance().isOccupied(x,i)){
                         return false;
                     }
-                    return true;
                 }
             }
         }
 
         else if (abs(x-this.x)==abs(y-this.y)){
+            int lenPath = abs(x-this.x);
             if (y>this.y && x>this.x){
-                for (int i= this.x +1; i<x; i++){
-                    if (Board.getInstance().isOccupied(i,i)){
+                for (int i=1; i<lenPath; i++){
+                    if (Board.getInstance().isOccupied(this.x+i,this.y+i)){
                         return false;
                     }
-                    return true;
                 }
             }
             if (y<this.y && x>this.x) {
-                for (int i = 1; i < this.y - y; i++) {
+                for (int i = 1; i < lenPath; i++) {
                     if (Board.getInstance().isOccupied(this.x + i, this.y - i)) {
                         return false;
                     }
-                    return true;
                 }
             }
             if (y<this.y && x<this.x){
-                for (int i=1; i<this.y-y;i++){
+                for (int i=1; i<lenPath;i++){
                     if (Board.getInstance().isOccupied(this.x-i,this.y-i)){
                         return false;
                     }
-                    return true;
                 }
 
             }
             if (y>this.y && x<this.x){
-                for (int i=1; i<y-this.y;i++){
+                for (int i=1; i<lenPath;i++){
                     if (Board.getInstance().isOccupied(this.x-i,this.y+i)){
                         return false;
                     }
-                    return true;
                 }
             }
 

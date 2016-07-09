@@ -101,13 +101,111 @@ public class Board {
         }
         else return true;
     }
-    public boolean isTie(){
+    public boolean isTie(Color color){
+        int x = getCoordinatesKing(color)[0];
+        int y = getCoordinatesKing(color)[1];
+        //als je check staat kan het geen Tie zijn
+        if (isCheck(color)){
+            return false;
+        }
+        Piece piece = getPieceAtPos(x,y);
+        if (piece.isPossible(x,y+1)){
+            return false;
+        }
+        if (piece.isPossible(x,y-1)){
+            return false;
+        }
+        if (piece.isPossible(x+1,y+1)){
+            return false;
+        }
+        if (piece.isPossible(x+1,y)){
+            return false;
+        }
+        if (piece.isPossible(x+1,y-1)){
+            return false;
+        }
+        if (piece.isPossible(x-1,y+1)){
+            return false;
+        }
+        if (piece.isPossible(x-1,y)){
+            return false;
+        }
+        if (piece.isPossible(x-1,y-1)){
+            return false;
+        }
+        return true;
+    }
+
+    public boolean isCheckmate(Color color){
+        if (isCheck(color)){
+            int x = getCoordinatesKing(color)[0];
+            int y = getCoordinatesKing(color)[1];
+            Piece piece = getPieceAtPos(x,y);
+            if (piece.isPossible(x,y+1)){
+                return false;
+            }
+            if (piece.isPossible(x,y-1)){
+                return false;
+            }
+            if (piece.isPossible(x+1,y+1)){
+                return false;
+            }
+            if (piece.isPossible(x+1,y)){
+                return false;
+            }
+            if (piece.isPossible(x+1,y-1)){
+                return false;
+            }
+            if (piece.isPossible(x-1,y+1)){
+                return false;
+            }
+            if (piece.isPossible(x-1,y)){
+                return false;
+            }
+            if (piece.isPossible(x-1,y-1)){
+                return false;
+            }
+            return true;
+        }
+
         return false;
     }
 
-    public boolean isCheckmate(){
+    public boolean isCheck(Color color){
+        int x = getCoordinatesKing(color)[0];
+        int y = getCoordinatesKing(color)[1];
+        for (int i=0;i<8;i++){
+            for (int j=0; j<8;j++){
+                if (i == x && j == y){
+                    continue;
+                }
+                Piece piece = getPieceAtPos(i,j);
+                if (piece.getColor() == color){
+                    continue;
+                }
+                if (piece.isPossible(x,y)){
+                    return true;
+                }
+
+            }
+        }
 
         return false;
+    }
+
+    public int[] getCoordinatesKing(Color color){
+        int[] k = {8,8};
+        for (int i=0;i<8;i++){
+            for (int j=0;j<8;j++) {
+                Piece piece = getPieceAtPos(i, j);
+                if (piece.getColor()== color && piece.getType()=="King"){
+                    k[0]=i;
+                    k[1]=j;
+                    return k;
+                }
+            }
+        }
+        return k;
     }
     public Piece getPieceAtPos(int x, int y){
         return spaces[x][y];

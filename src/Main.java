@@ -20,8 +20,7 @@ public class Main {
 
         boolean white = false;
 
-        board.printBoard();
-        System.out.println("================");
+
         board.init();
         board.printBoard();
 
@@ -60,22 +59,39 @@ public class Main {
 
             board.printBoard();
 
-
-        } while (!board.isCheckmate() && !board.isTie());
-
-        if (board.isTie()) {
-            System.out.print("It's a tie!");
-
-        }
-
-        if (board.isCheckmate()) {
-            if(white){
-                System.out.printf("%s won!", "White");
-            }else{
-                System.out.printf("%s won!", "Black");
+            //nodig om mijn isCheck method te gebruiken, color wordt de kleur van degene die niet aan de beurt is
+            Color color;
+            if (white){
+                color = Color.black;
+            }
+            else {
+                color = Color.white;
             }
 
-        }
+            if (board.isCheck(color))
+                if (board.isCheckmate(color)){
+                    if(white){
+                        System.out.printf("%s won!\n", "White");
+                    }else{
+                        System.out.printf("%s won!\n", "Black");
+                    }
+                    break;
+                }
+                else {
+                    if(white){
+                        System.out.printf("Watch out Black, you are body checked\n");
+                    }else{
+                        System.out.printf("Watch out White, you are body checked\n");
+                    }
+                }
+            else if (board.isTie(color))
+                System.out.printf("It is a tie!\n");
+                break;
+
+
+        } while (true);
+
+
 
 
     }

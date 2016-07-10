@@ -6,4 +6,8 @@ package Essentials;
 public class GraphicsSettings {
 
     public static int squareSize = 60;
+    public static int windowTitleSize = 38;
+    public static int leftSize = 9;
+
+
 }

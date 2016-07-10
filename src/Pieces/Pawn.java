@@ -14,6 +14,7 @@ public class Pawn extends Piece {
 
     public Pawn(int x, int y, Color color) {
         super(x, y, color, "Pawn");
+        findImage();
     }
 
     private int[][] legalP1 = {{0,-1},{1,-1},{-1,-1},{0,-2}};

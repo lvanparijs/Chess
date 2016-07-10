@@ -9,6 +9,7 @@ import java.util.Arrays;
 public class King extends Piece {
     public King(int x, int y, Color color) {
         super(x, y, color, "King");
+        findImage();
     }
     private int[][] legalK={ {1,1}, {1,0}, {0,1}, {1,-1}, {-1,-1}, {-1,0}, {0,-1}, {-1,1} };
 

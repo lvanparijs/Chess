@@ -10,6 +10,7 @@ public class Horse extends Piece {
 
     public Horse(int x, int y, Color color) {
         super(x, y, color, "Horse");
+        findImage();
     }
 
     private int[][] legalH={ {1,2}, {1,-2}, {-1,2}, {-1,-2}, {2,1}, {2,-1}, {-2,1}, {-2,-1} };

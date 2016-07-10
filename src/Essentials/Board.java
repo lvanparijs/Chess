@@ -215,4 +215,8 @@ public class Board {
         spaces[x2][y2] = spaces[x1][y1];
         spaces[x1][y1] = null;
     }
+
+    public void drawBoard(Graphics2D g2d){
+
+    }
 }

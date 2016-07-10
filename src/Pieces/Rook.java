@@ -9,6 +9,7 @@ import java.util.Arrays;
 public class Rook extends Piece {
     public Rook(int x, int y, Color color) {
         super(x, y, color, "Rook");
+        findImage();
     }
 
     private int[][] legalR  = {{0,1}, {0,2}, {0,3},{0,4}, {0,5}, {0,6}, {0,7}, {0,8},

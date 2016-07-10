@@ -2,7 +2,13 @@ package Pieces;
 
 import Essentials.Board;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 import static java.lang.Math.*;
 
@@ -25,6 +31,8 @@ public abstract class Piece {
     Color color;
 
     String type;
+
+    BufferedImage img;
 
     public String getType(){
         return this.type;
@@ -152,4 +160,22 @@ public abstract class Piece {
             return false;
     }
 
+    public void findImage(){
+        String col;
+        if(color == Color.BLACK){
+            col = "Black";
+        }else{
+            col = "White";
+        }
+        try {
+            this.img = ImageIO.read(new File("C:\\Users\\lvanp\\IdeaProjects\\Chess\\res/"+type+col+".png"));
+        }catch (IOException e){
+            System.out.println("File Not Found");
+        }
+    }
+
+    public void drawPiece(Graphics2D g2d, int screenX, int screenY){
+        System.out.println("HERE");
+        g2d.drawImage(img,screenX,screenY,img.getWidth(),img.getHeight(),null);
+    }
 }

@@ -1,6 +1,10 @@
 package Pieces;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 
 /**
@@ -9,6 +13,8 @@ import java.util.Arrays;
 public class Queen extends Piece {
     public Queen(int x, int y, Color color) {
         super(x, y, color, "Queen");
+        findImage();
+
     }
     private int[][] legalQ = {{0,1}, {0,2}, {0,3},{0,4}, {0,5}, {0,6}, {0,7}, {0,8},
             {0,-1}, {0,-2}, {0,-3},{0,-4}, {0,-5}, {0,-6}, {0,-7}, {0,-8},

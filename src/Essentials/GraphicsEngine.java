@@ -4,18 +4,21 @@ import Pieces.Piece;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+import static Essentials.GraphicsSettings.squareSize;
 
 /**
  * Created by Locoge on 3-7-2016.
  */
 public class GraphicsEngine extends JPanel{
 
-    int sqSize = GraphicsSettings.squareSize;
+    int sqSize = squareSize;
 
-    public GraphicsEngine(){
-
+    public GraphicsEngine() {
     }
-
     @Override
     public void paintComponent(Graphics g){
         Graphics2D g2d = (Graphics2D) g;
@@ -46,4 +49,5 @@ public class GraphicsEngine extends JPanel{
     public void refresh(){
 
     }
+
 }

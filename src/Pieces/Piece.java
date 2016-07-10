@@ -167,7 +167,7 @@ public abstract class Piece {
             col = "White";
         }
         try {
-            this.img = ImageIO.read(new File("C:\\Users\\lvanp\\IdeaProjects\\Chess\\res/"+type+col+".png"));
+            this.img = ImageIO.read(new File("C:\\Users\\darius\\IdeaProjects\\Chess\\res/"+type+col+".png"));
         }catch (IOException e){
             System.out.println("File Not Found");
         }

@@ -8,17 +8,23 @@ import Players.Player;
 import javax.swing.*;
 import java.awt.*;
 import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by lvanp on 03/07/2016.
  */
-public class Main extends JFrame{
+public class Main extends JFrame {
 
     public static void main(String[] args)
     {
         Board board = Board.getInstance();
+
+        Timer t = new Timer();
+
+
         GameEngine gameLoop = new GameEngine();
-        GraphicsEngine graphicsEngine = new GraphicsEngine();
+        GraphicsEngine graphicsEngine = new GraphicsEngine(t);
 
         Main frame = new Main(graphicsEngine);
 

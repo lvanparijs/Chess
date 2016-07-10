@@ -4,16 +4,26 @@ import Pieces.Piece;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.*;
+import java.util.Timer;
 
 /**
  * Created by Locoge on 3-7-2016.
  */
-public class GraphicsEngine extends JPanel{
+public class GraphicsEngine extends JPanel {
 
     int sqSize = GraphicsSettings.squareSize;
 
-    public GraphicsEngine(){
+    Timer timer =  new Timer();
 
+    public GraphicsEngine(Timer t){
+        this.timer = t;
+        timer.scheduleAtFixedRate((new TimerTask() {
+            @Override
+            public void run() {
+                repaint();
+            }
+        }),100, (long) 16.7);
     }
 
     @Override
@@ -40,10 +50,6 @@ public class GraphicsEngine extends JPanel{
             }
         }
 
-
-    }
-
-    public void refresh(){
 
     }
 }

@@ -1,6 +1,7 @@
 package Pieces;
 
 import Essentials.Board;
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -168,6 +169,7 @@ public abstract class Piece {
         }
         try {
             String username = System.getProperty("user.name");
+            System.out.println(username);
             this.img = ImageIO.read(new File("C:\\Users\\"+username+"\\IdeaProjects\\Chess\\res/"+type+col+".png"));
         }catch (IOException e){
             System.out.println("File Not Found");

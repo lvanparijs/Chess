@@ -180,13 +180,14 @@ public class Board {
                     continue;
                 }
                 Piece piece = getPieceAtPos(i,j);
-                if (piece.getColor() == color){
-                    continue;
+                if(piece != null) {
+                    if (piece.getColor() == color) {
+                        continue;
+                    }
+                    if (piece.isPossible(x, y)) {
+                        return true;
+                    }
                 }
-                if (piece.isPossible(x,y)){
-                    return true;
-                }
-
             }
         }
 
@@ -198,10 +199,12 @@ public class Board {
         for (int i=0;i<8;i++){
             for (int j=0;j<8;j++) {
                 Piece piece = getPieceAtPos(i, j);
-                if (piece.getColor()== color && piece.getType()=="King"){
-                    k[0]=i;
-                    k[1]=j;
-                    return k;
+                if(piece != null) {
+                    if (piece.getColor() == color && piece.getType() == "King") {
+                        k[0] = i;
+                        k[1] = j;
+                        return k;
+                    }
                 }
             }
         }
@@ -214,9 +217,5 @@ public class Board {
     public void moveXtoY(int x1, int y1, int x2, int y2){
         spaces[x2][y2] = spaces[x1][y1];
         spaces[x1][y1] = null;
-    }
-
-    public void drawBoard(Graphics2D g2d){
-
     }
 }

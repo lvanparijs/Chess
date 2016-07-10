@@ -10,7 +10,7 @@ import java.awt.*;
  */
 public class GraphicsEngine extends JPanel{
 
-    int sqSize = 60;
+    int sqSize = GraphicsSettings.squareSize;
 
     public GraphicsEngine(){
 
@@ -20,6 +20,8 @@ public class GraphicsEngine extends JPanel{
     public void paintComponent(Graphics g){
         Graphics2D g2d = (Graphics2D) g;
         super.paintComponent(g2d);
+
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
         Board board = Board.getInstance();
 
@@ -33,7 +35,6 @@ public class GraphicsEngine extends JPanel{
                 g2d.fillRect(sqSize*i,sqSize*j,sqSize,sqSize);
                 Piece curPiece = board.getPieceAtPos(i,j);
                 if(curPiece instanceof Piece) {
-                    System.out.println("PRINTIMG");
                     board.spaces[i][j].drawPiece(g2d, sqSize * i, sqSize * j);
                 }
             }

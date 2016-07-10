@@ -17,7 +17,6 @@ import static java.lang.Math.*;
  */
 public abstract class Piece {
 
-
     public Piece(int x, int y, Color color, String type){
         this.x = x;
         this.y = y;
@@ -175,7 +174,6 @@ public abstract class Piece {
     }
 
     public void drawPiece(Graphics2D g2d, int screenX, int screenY){
-        System.out.println("HERE");
         g2d.drawImage(img,screenX,screenY,img.getWidth(),img.getHeight(),null);
     }
 }

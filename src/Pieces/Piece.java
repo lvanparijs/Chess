@@ -168,6 +168,10 @@ public abstract class Piece {
         }
         try {
             String username = System.getProperty("user.name");
+            if (username.contains("Locoge")){
+                username = "darius";
+
+            }
             this.img = ImageIO.read(new File("C:\\Users\\"+username+"\\IdeaProjects\\Chess\\res/"+type+col+".png"));
         }catch (IOException e){
             System.out.println("File Not Found");

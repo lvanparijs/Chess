@@ -22,6 +22,7 @@ public class King extends Piece {
     }
 
     public boolean isLegal(int x, int y) {
+        System.out.println(color.toString());
         int[] displacement = {x - this.x, y - this.y};
         for (int i = 0; i < legal.length; i++) {
             if (legal[i][0] == displacement[0] && legal[i][1] == displacement[1]) {

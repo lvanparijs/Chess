@@ -56,11 +56,7 @@ public class Board {
 
     public void init(){
 
-        spaces[4][0] = new King(4,0,Color.black);
-        spaces[5][2] = new Queen(5,2,Color.white);
-        spaces[3][3] = new King(3,3,Color.white);
 
-        /*
         spaces[0][0] = new Rook(0,0,Color.black);
         spaces[1][0] = new Horse(1,0,Color.black);
         spaces[2][0] = new Bishop(2,0,Color.black);
@@ -95,7 +91,7 @@ public class Board {
         spaces[5][6] = new Pawn(5,6,Color.white);
         spaces[6][6] = new Pawn(6,6,Color.white);
         spaces[7][6] = new Pawn(7,6,Color.white);
-        */
+
     }
 
     public int getSize(){
@@ -239,16 +235,15 @@ public class Board {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 if (i == x && j == y) {
-                    continue;
-                }
-                Piece piece = getPieceAtPos(i, j);
 
-                if (piece != null) {
-                    if (piece.getColor() == c) {
-                        continue;
-                    }
-                    if (piece.isPossible(x, y)) {
-                        return true;
+                }else {
+                    Piece piece = getPieceAtPos(i, j);
+                    if (piece != null) {
+                        if (piece.getColor() != c) {
+                            if (piece.isPossible(x, y)) {
+                                return true;
+                            }
+                        }
                     }
                 }
             }

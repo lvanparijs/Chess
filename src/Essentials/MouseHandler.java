@@ -45,6 +45,6 @@ public class MouseHandler extends MouseAdapter {
 
         @Override
         public void mouseDragged(MouseEvent event){
-
+            //nice
         }
 }

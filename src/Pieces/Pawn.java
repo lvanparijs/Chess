@@ -22,11 +22,9 @@ public class Pawn extends Piece {
     public boolean isLegal(int x, int y){
         int [] displacement = {x-this.x, y-this.y};
         //System.out.println(displacement.toString());
-        for(int i = 0; i < displacement.length; i++){
+        /*for(int i = 0; i < displacement.length; i++){
             System.out.print(displacement[i]+" ");
-        }
-        System.out.println(color.toString());
-        System.out.println(Color.white.toString());
+        }*/
         //System.out.println(legalP1.toString());
         if (color == Color.white){
             for(int i = 0; i < legalP1.length; i++){

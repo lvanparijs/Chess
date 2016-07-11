@@ -11,75 +11,28 @@ import java.awt.event.MouseEvent;
  */
 public class Main extends JFrame{
 
+
     public static void main(String[] args)
     {
-        Board board = Board.getInstance();
-        GameEngine gameLoop = new GameEngine();
-        GraphicsEngine graphicsEngine = new GraphicsEngine();
 
-        Main frame = new Main(graphicsEngine);
+        Board board = Board.getInstance();
+        MouseHandler mouseHandler = new MouseHandler();
+        GameEngine gameLoop = new GameEngine(mouseHandler);
+        GraphicsEngine graphicsEngine = new GraphicsEngine();
+        Main frame = new Main(graphicsEngine,mouseHandler);
 
         gameLoop.start();
 
-
     }
 
-    public Main(JPanel panel){
+    public Main(JPanel panel, MouseHandler mouseHandler){
         this.setTitle("Chess");
-        this.setSize(600,400);
+        this.setSize(495,520);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        this.setLocationRelativeTo(null);
         this.add(panel);
-        this.addMouseListener(new MouseEngine((GraphicsEngine) panel));
+        this.addMouseListener(mouseHandler);
         this.setVisible(true);
-
-
-    }
-    private class MouseEngine extends MouseAdapter {
-        private int counter=0;
-        boolean white = true;
-        Piece piece;
-        GraphicsEngine graphicsEngine;
-
-
-        public MouseEngine(GraphicsEngine graphicsEngine){
-            this.graphicsEngine = graphicsEngine;
-        }
-        public Board board = Board.getInstance();
-        @Override
-        public void mouseClicked(MouseEvent event){
-            int xPos = event.getX()-GraphicsSettings.leftSize;
-            int yPos= event.getY()-GraphicsSettings.windowTitleSize;
-            int x = xPos/GraphicsSettings.squareSize;
-            int y = yPos/GraphicsSettings.squareSize;
-            if (counter == 0){
-                if (!board.myPiece(x, y, white)) {
-                    return;
-                }
-
-
-                piece = board.getPieceAtPos(x,y);
-                counter = counter +1;
-
-
-            }
-
-            if (counter == 1){
-                if (!piece.isPossible(x,y)){
-                    return;
-                }
-                piece.move(x,y);
-
-
-
-                white = !white;
-                counter = 0;
-                graphicsEngine.repaint();
-
-
-            }
-
-        }
     }
 
 }

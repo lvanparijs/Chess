@@ -14,14 +14,19 @@ import java.util.TimerTask;
  */
 public class GameEngine {
 
+    Timer timer =  new Timer();
+
     Board board = Board.getInstance();
 
     Player player1 = new Human(Color.white);
     Player player2 = new Human(Color.black);
 
+    MouseHandler mouseHandler;
+
     boolean white = false;
 
-    public GameEngine(){
+    public GameEngine(MouseHandler mouseHandler){
+        this.mouseHandler = mouseHandler;
     }
 
     public void start(){
@@ -29,11 +34,8 @@ public class GameEngine {
         board.init();
         board.printBoard();
 
-        Scanner input = new Scanner(System.in);
-
         do {
             white = !white;
-
 
             int x1;
             int y1;
@@ -44,8 +46,12 @@ public class GameEngine {
                     System.out.printf("%s, it is your turn, please choose two set of coordinates\n", "Black");
                 }
                 System.out.print("Choose the piece you want to move (first x then y): ");
-                x1 = input.nextInt();
-                y1 = input.nextInt();
+                mouseHandler.click = false;
+                while (!mouseHandler.click){
+                }
+                x1 = mouseHandler.getX();
+                y1 = mouseHandler.getY();
+                mouseHandler.click = false;
             } while (!board.myPiece(x1, y1, white));
 
 
@@ -55,8 +61,10 @@ public class GameEngine {
             int y2;
 
             do {System.out.print("Choose the place you want to move it(first x then y): ");
-                x2 = input.nextInt();
-                y2 = input.nextInt();
+                while (!mouseHandler.click){}
+                x2 = mouseHandler.getX();
+                y2 = mouseHandler.getY();
+                mouseHandler.click = false;
             } while (!piece.isPossible(x2,y2));
 
             System.out.println("MOVE");
@@ -91,9 +99,6 @@ public class GameEngine {
                 }
             else if (board.isTie(color))
                 System.out.printf("It is a tie!\n");
-            break;
-
-
         } while (true);
     }
 

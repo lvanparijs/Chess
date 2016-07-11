@@ -12,6 +12,7 @@ public class Rook extends Piece {
         findImage();
     }
 
+    public boolean firstMove = true;
     private int[][] legalR  = {{0,1}, {0,2}, {0,3},{0,4}, {0,5}, {0,6}, {0,7}, {0,8},
                             {0,-1}, {0,-2}, {0,-3},{0,-4}, {0,-5}, {0,-6}, {0,-7}, {0,-8},
                             {1,0}, {2,0}, {3,0},{4,0}, {5,0}, {6,0}, {7,0}, {8,0},
@@ -21,6 +22,7 @@ public class Rook extends Piece {
         int [] displacement = {x-this.x, y-this.y};
         for(int i = 0; i < legalR.length; i++){
             if(legalR[i][0] == displacement[0] && legalR[i][1] == displacement[1]) {
+                firstMove = false;
                 return true;
             }
         }

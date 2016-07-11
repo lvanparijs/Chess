@@ -2,22 +2,31 @@ package Essentials;
 
 import Pieces.Piece;
 
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import static Essentials.GraphicsSettings.squareSize;
 
 /**
  * Created by Locoge on 3-7-2016.
  */
-public class GraphicsEngine extends JPanel{
+public class GraphicsEngine extends JPanel {
+
+    Timer timer;
 
     int sqSize = squareSize;
 
     public GraphicsEngine() {
+        timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                repaint();
+            }
+        },0,17);
     }
     @Override
     public void paintComponent(Graphics g){
@@ -42,8 +51,6 @@ public class GraphicsEngine extends JPanel{
                 }
             }
         }
-
-
     }
 
     public void refresh(){

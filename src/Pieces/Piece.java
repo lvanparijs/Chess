@@ -126,26 +126,21 @@ public abstract class Piece {
     public boolean isPossible(int x, int y){
         //Outside the board
         if(isOutOfBounds(x,y)) {
-            System.out.print('B');
             return false;
         }
         //If it's a knight this does not apply
         if(type != "Horse")
             if(!isPathFree(x,y)) {
-                System.out.print('F');
                 return false;
             }
         //If it from the same player you cannot go there
         if (Board.getInstance().getPieceAtPos(x,y)!=null) {
             if (Board.getInstance().getPieceAtPos(x, y).getColor() == color) {
-                System.out.print('S');
                 return false;
             }
         }
         //IF it is a legal move for the specific piece
         if (!isLegal(x,y)){
-            System.out.print('L');
-
             return false;
         }
 

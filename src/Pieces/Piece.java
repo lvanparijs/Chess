@@ -25,14 +25,16 @@ public abstract class Piece {
         this.type = type;
     }
 
-    int x;
-    int y;
+    public int x;
+    public int y;
 
     Color color;
 
     String type;
 
     BufferedImage img;
+
+    public int[][] legal;
 
     public String getType(){
         return this.type;
@@ -120,8 +122,6 @@ public abstract class Piece {
     }
 
     public abstract boolean isLegal(int x, int y );
-
-
 
     public boolean isPossible(int x, int y){
         //Outside the board

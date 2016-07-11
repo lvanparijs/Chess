@@ -40,9 +40,9 @@ public class GraphicsEngine extends JPanel {
         for(int i = 0; i < board.getSize(); i++){
             for(int j = 0; j < board.getSize(); j++){
                 if((i+j)%2==0){
-                    g2d.setColor(Color.LIGHT_GRAY);
+                    g2d.setColor(GraphicsSettings.whiteField);
                 }else{
-                    g2d.setColor(Color.DARK_GRAY);
+                    g2d.setColor(GraphicsSettings.blackField);
                 }
                 g2d.fillRect(sqSize*i,sqSize*j,sqSize,sqSize);
                 Piece curPiece = board.getPieceAtPos(i,j);

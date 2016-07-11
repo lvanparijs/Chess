@@ -27,9 +27,10 @@ public class Main extends JFrame{
 
     public Main(JPanel panel, MouseHandler mouseHandler){
         this.setTitle("Chess");
-        this.setSize(495,520);
+        this.setSize(486,509);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
+        this.setResizable(false);
         this.add(panel);
         this.addMouseListener(mouseHandler);
         this.setVisible(true);

@@ -11,21 +11,24 @@ import java.util.Arrays;
 public class King extends Piece {
 
     private boolean firstMove = true;
-    private int[][] legalK = {{1, 1}, {1, 0}, {0, 1}, {1, -1}, {-1, -1}, {-1, 0}, {0, -1}, {-1, 1}};
-    private int[][] castlingK = {{-2, 0}, {2, 0}};
+    public int[][] castlingK = {{-2, 0}, {2, 0}};
 
 
     public King(int x, int y, Color color) {
         super(x, y, color, "King");
         findImage();
+        legal = new int[][] {{1, 1}, {1, 0}, {0, 1}, {1, -1}, {-1, -1}, {-1, 0}, {0, -1}, {-1, 1}};
+
     }
 
     public boolean isLegal(int x, int y) {
         int[] displacement = {x - this.x, y - this.y};
-        for (int i = 0; i < legalK.length; i++) {
-            if (legalK[i][0] == displacement[0] && legalK[i][1] == displacement[1]) {
-                firstMove = false;
-                return true;
+        for (int i = 0; i < legal.length; i++) {
+            if (legal[i][0] == displacement[0] && legal[i][1] == displacement[1]) {
+                if(!Board.getInstance().isPlaceCheck(x,y,color)) {
+                    firstMove = false;
+                    return true;
+                }
             }
         }
         if (firstMove) {

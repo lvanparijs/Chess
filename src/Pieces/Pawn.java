@@ -17,8 +17,8 @@ public class Pawn extends Piece {
         findImage();
     }
 
-    private int[][] legalP1 = {{0,-1},{1,-1},{-1,-1},{0,-2}};
-    private int[][] legalP2 = {{0,1},{1,1},{-1,1},{0,2}};
+    public int[][] legalP1 = {{0,-1},{1,-1},{-1,-1},{0,-2}};
+    public int[][] legalP2 = {{0,1},{1,1},{-1,1},{0,2}};
     public boolean isLegal(int x, int y){
         int [] displacement = {x-this.x, y-this.y};
         //System.out.println(displacement.toString());

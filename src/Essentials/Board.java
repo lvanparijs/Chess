@@ -55,43 +55,47 @@ public class Board {
 
 
     public void init(){
-        //spaces[0][0] = new Rook(0,0,Color.black);
-        //spaces[1][0] = new Horse(1,0,Color.black);
-        //spaces[2][0] = new Bishop(2,0,Color.black);
-        //spaces[3][0] = new Queen(3,0,Color.black);
-        spaces[4][0] = new King(4,0,Color.black);
-        //spaces[5][0] = new Bishop(5,0,Color.black);
-        //spaces[6][0] = new Horse(6,0,Color.black);
-        //spaces[7][0] = new Rook(7,0,Color.black);
-        //spaces[0][1] = new Pawn(0,1,Color.black);
-        //spaces[1][1] = new Pawn(1,1,Color.black);
-        //spaces[2][1] = new Pawn(2,1,Color.black);
-        //spaces[3][1] = new Pawn(3,1,Color.black);
-        //spaces[4][1] = new Pawn(4,1,Color.black);
-        //spaces[5][1] = new Pawn(5,1,Color.black);
-        //spaces[6][1] = new Pawn(6,1,Color.black);
-        //spaces[7][1] = new Pawn(7,1,Color.black);
 
-        spaces[6][1] = new Queen(6,1,Color.black);
+        spaces[4][0] = new King(4,0,Color.black);
+        spaces[5][2] = new Queen(5,2,Color.white);
+        spaces[3][3] = new King(3,3,Color.white);
+
+        /*
+        spaces[0][0] = new Rook(0,0,Color.black);
+        spaces[1][0] = new Horse(1,0,Color.black);
+        spaces[2][0] = new Bishop(2,0,Color.black);
+        spaces[3][0] = new Queen(3,0,Color.black);
+        spaces[4][0] = new King(4,0,Color.black);
+        spaces[5][0] = new Bishop(5,0,Color.black);
+        spaces[6][0] = new Horse(6,0,Color.black);
+        spaces[7][0] = new Rook(7,0,Color.black);
+        spaces[0][1] = new Pawn(0,1,Color.black);
+        spaces[1][1] = new Pawn(1,1,Color.black);
+        spaces[2][1] = new Pawn(2,1,Color.black);
+        spaces[3][1] = new Pawn(3,1,Color.black);
+        spaces[4][1] = new Pawn(4,1,Color.black);
+        spaces[5][1] = new Pawn(5,1,Color.black);
+        spaces[6][1] = new Pawn(6,1,Color.black);
+        spaces[7][1] = new Pawn(7,1,Color.black);
 
 
         spaces[0][7] = new Rook(0,7,Color.white);
-        //spaces[1][7] = new Horse(1,7,Color.white);
-        //spaces[2][7] = new Bishop(2,7,Color.white);
-        //spaces[3][7] = new Queen(3,7,Color.white);
+        spaces[1][7] = new Horse(1,7,Color.white);
+        spaces[2][7] = new Bishop(2,7,Color.white);
+        spaces[3][7] = new Queen(3,7,Color.white);
         spaces[4][7] = new King(4,7,Color.white);
-        //spaces[5][7] = new Bishop(5,7,Color.white);
-        //spaces[6][7] = new Horse(6,7,Color.white);
+        spaces[5][7] = new Bishop(5,7,Color.white);
+        spaces[6][7] = new Horse(6,7,Color.white);
         spaces[7][7] = new Rook(7,7,Color.white);
-        //spaces[0][6] = new Pawn(0,6,Color.white);
-        //spaces[1][6] = new Pawn(1,6,Color.white);
-        //spaces[2][6] = new Pawn(2,6,Color.white);
-        //spaces[3][6] = new Pawn(3,6,Color.white);
-        //spaces[4][6] = new Pawn(4,6,Color.white);
-        //spaces[5][6] = new Pawn(5,6,Color.white);
-        //spaces[6][6] = new Pawn(6,6,Color.white);
-        //spaces[7][6] = new Pawn(7,6,Color.white);
-
+        spaces[0][6] = new Pawn(0,6,Color.white);
+        spaces[1][6] = new Pawn(1,6,Color.white);
+        spaces[2][6] = new Pawn(2,6,Color.white);
+        spaces[3][6] = new Pawn(3,6,Color.white);
+        spaces[4][6] = new Pawn(4,6,Color.white);
+        spaces[5][6] = new Pawn(5,6,Color.white);
+        spaces[6][6] = new Pawn(6,6,Color.white);
+        spaces[7][6] = new Pawn(7,6,Color.white);
+        */
     }
 
     public int getSize(){
@@ -105,13 +109,45 @@ public class Board {
         else return true;
     }
     public boolean isTie(Color color){
-        /*
-        int x = getCoordinatesKing(color)[0];
-        int y = getCoordinatesKing(color)[1];
+
+        //int x = getCoordinatesKing(color)[0];
+        //int y = getCoordinatesKing(color)[1];
         //als je check staat kan het geen Tie zijn
         if (isCheck(color)){
             return false;
         }
+
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                Piece p = getPieceAtPos(i,j);
+                if(p != null && p.getColor() == color){
+                    if(p instanceof Pawn){
+                        Pawn pa = (Pawn)p;
+                        if(color == Color.BLACK){
+                            for (int k = 0; k < pa.legalP2.length; k++) {
+                                if (pa.isPossible(p.x-pa.legalP2[k][0], p.y-pa.legalP2[k][1])) {
+                                    return false;
+                                }
+                            }
+                        }else{
+                            for (int k = 0; k < pa.legalP1.length; k++) {
+                                if (pa.isPossible(p.x-pa.legalP1[k][0], p.y-pa.legalP1[k][1])) {
+                                    return false;
+                                }
+                            }
+                        }
+                    }else {
+                        for (int k = 0; k < p.legal.length; k++) {
+                            if (p.isPossible(p.x-p.legal[k][0], p.y-p.legal[k][1])) {
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        /*
+
         Piece piece = getPieceAtPos(x,y);
         if (piece.isPossible(x,y+1)){
             return false;
@@ -137,9 +173,8 @@ public class Board {
         if (piece.isPossible(x-1,y-1)){
             return false;
         }
-        return true;
         */
-        return false;
+        return true;
     }
 
     public boolean isCheckmate(Color color){

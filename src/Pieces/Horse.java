@@ -11,14 +11,14 @@ public class Horse extends Piece {
     public Horse(int x, int y, Color color) {
         super(x, y, color, "Horse");
         findImage();
-    }
+        legal = new int[][]{ {1,2}, {1,-2}, {-1,2}, {-1,-2}, {2,1}, {2,-1}, {-2,1}, {-2,-1} };
 
-    private int[][] legalH={ {1,2}, {1,-2}, {-1,2}, {-1,-2}, {2,1}, {2,-1}, {-2,1}, {-2,-1} };
+    }
 
     public boolean isLegal(int x, int y){
         int [] displacement = {x-this.x, y-this.y};
-        for(int i = 0; i < legalH.length; i++){
-            if(legalH[i][0] == displacement[0] && legalH[i][1] == displacement[1]) {
+        for(int i = 0; i < legal.length; i++){
+            if(legal[i][0] == displacement[0] && legal[i][1] == displacement[1]) {
                 return true;
             }
         }

@@ -5,11 +5,12 @@ import com.sun.corba.se.impl.orbutil.graph.Graph;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 /**
  * Created by lvanp on 11/07/2016.
  */
-public class MouseHandler extends MouseAdapter {
+public class MouseHandler implements MouseListener {
 
         private int counter = 0;
         public int mouseX,mouseY;
@@ -35,7 +36,12 @@ public class MouseHandler extends MouseAdapter {
         }
 
 
-        @Override
+    @Override
+    public void mouseClicked(MouseEvent e) {
+
+    }
+
+    @Override
         public void mousePressed(MouseEvent event){
             mouseX = event.getX()-GraphicsSettings.leftSize;
             mouseY = event.getY()-GraphicsSettings.topSize;
@@ -43,8 +49,19 @@ public class MouseHandler extends MouseAdapter {
             click = true;
         }
 
-        @Override
-        public void mouseDragged(MouseEvent event){
-            //nice
-        }
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
+
 }

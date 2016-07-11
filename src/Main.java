@@ -30,7 +30,7 @@ public class Main extends JFrame{
         this.setSize(486,509);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
-        this.setResizable(false);
+        //this.setResizable(false);
         this.add(panel);
         this.addMouseListener(mouseHandler);
         this.setVisible(true);

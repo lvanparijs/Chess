@@ -46,12 +46,17 @@ public class GameEngine {
                     System.out.printf("%s, it is your turn, please choose two set of coordinates\n", "Black");
                 }
                 System.out.print("Choose the piece you want to move (first x then y): ");
-                mouseHandler.click = false;
-                while (!mouseHandler.click){
+                mouseHandler.setClick(false);
+                System.out.println(mouseHandler.getClick());
+
+                while (!mouseHandler.getClick()){
+                    System.out.println(mouseHandler.getClick());
+
                 }
                 x1 = mouseHandler.getX();
                 y1 = mouseHandler.getY();
-                mouseHandler.click = false;
+                mouseHandler.setClick(false);
+                //System.out.println("FUCCCCK");
             } while (!board.myPiece(x1, y1, white));
 
 
@@ -61,10 +66,14 @@ public class GameEngine {
             int y2;
 
             do {System.out.print("Choose the place you want to move it(first x then y): ");
-                while (!mouseHandler.click){}
+                while (!mouseHandler.getClick()){
+                    System.out.println(mouseHandler.getClick());
+                    System.out.println("HOLYFUCK");
+
+                }
                 x2 = mouseHandler.getX();
                 y2 = mouseHandler.getY();
-                mouseHandler.click = false;
+                mouseHandler.setClick(false);
             } while (!piece.isPossible(x2,y2));
 
             System.out.println("MOVE");

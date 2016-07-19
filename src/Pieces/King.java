@@ -10,7 +10,6 @@ import java.util.Arrays;
  */
 public class King extends Piece {
 
-    private boolean firstMove = true;
     public int[][] castlingK = {{-2, 0}, {2, 0}};
 
 
@@ -26,10 +25,14 @@ public class King extends Piece {
         int[] displacement = {x - this.x, y - this.y};
         for (int i = 0; i < legal.length; i++) {
             if (legal[i][0] == displacement[0] && legal[i][1] == displacement[1]) {
+                int xoor = this.x;
+                int yoor = this.y;
+                move(x,y);
                 if(!Board.getInstance().isPlaceCheck(x,y,color)) {
-                    firstMove = false;
+                    move(xoor, yoor);
                     return true;
                 }
+                move(xoor, yoor);
             }
         }
         if (firstMove) {
@@ -46,7 +49,6 @@ public class King extends Piece {
                                             return false;
                                         }
                                     }
-                                    firstMove = false;
                                     ((Rook) p).firstMove = false;
                                     Board.getInstance().moveXtoY(0, y, 3, y);
                                     return true;
@@ -61,7 +63,6 @@ public class King extends Piece {
                                             return false;
                                         }
                                     }
-                                    firstMove = false;
                                     ((Rook) p).firstMove = false;
                                     Board.getInstance().moveXtoY(7, y, 5, y);
                                     return true;

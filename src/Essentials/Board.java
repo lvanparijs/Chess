@@ -99,11 +99,24 @@ public class Board {
     }
 
     public boolean myPiece(int x, int y, boolean white){
-        if (spaces[x][y] == null || ((spaces[x][y].getColor() == Color.WHITE) != white) ) {
+        if (spaces[x][y] == null) {
             return false;
         }
-        else return true;
+        if (white){
+            if (spaces[x][y].getColor() == Color.BLACK){
+                return false;
+            }
+
+        }
+        else if (!white){
+            if (spaces[x][y].getColor() == Color.WHITE){
+                return false;
+            }
+        }
+    return true;
     }
+
+
     public boolean isTie(Color color){
 
         //int x = getCoordinatesKing(color)[0];
@@ -174,7 +187,7 @@ public class Board {
     }
 
     public boolean isCheckmate(Color color){
-        /*if (isCheck(color)){
+        if (isCheck(color)){
             int x = getCoordinatesKing(color)[0];
             int y = getCoordinatesKing(color)[1];
             Piece piece = getPieceAtPos(x,y);
@@ -203,14 +216,14 @@ public class Board {
                 return false;
             }
             return true;
-        }*/
+        }
 
         return false;
     }
 
     public boolean isCheck(Color color){
-        int x = getCoordinatesKing(color)[0];
-        int y = getCoordinatesKing(color)[1];
+        int x = board.getCoordinatesKing(color)[0];
+        int y = board.getCoordinatesKing(color)[1];
         for (int i=0;i<8;i++){
             for (int j=0; j<8;j++){
                 if (i == x && j == y){
@@ -219,7 +232,7 @@ public class Board {
                 Piece piece = getPieceAtPos(i,j);
 
                 if (piece != null) {
-                    if (piece.getColor() != color){
+                    if (piece.getColor() == color){
                         continue;
                     }
                     if (piece.isPossible(x,y)){

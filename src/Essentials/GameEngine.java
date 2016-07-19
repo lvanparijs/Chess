@@ -8,13 +8,14 @@ import java.awt.*;
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
+
+import static sun.misc.Version.println;
 
 /**
  * Created by Locoge on 3-7-2016.
  */
 public class GameEngine {
-
-    Timer timer =  new Timer();
 
     Board board = Board.getInstance();
 
@@ -23,13 +24,24 @@ public class GameEngine {
 
     MouseHandler mouseHandler;
 
-    boolean white = false;
+    private boolean whiteCheck = false;
+    private boolean blackCheck = false;
+
+    public static boolean white = false;
+
+
+
+    boolean readMode;
 
     public GameEngine(MouseHandler mouseHandler){
+
         this.mouseHandler = mouseHandler;
+
     }
 
-    public void start(){
+
+
+    public void start()  {
 
         board.init();
         board.printBoard();
@@ -40,43 +52,36 @@ public class GameEngine {
             int x1;
             int y1;
             do {
-                if(white){
-                    System.out.printf("%s, it is your turn, please choose two set of coordinates\n", "White");
-                }else{
-                    System.out.printf("%s, it is your turn, please choose two set of coordinates\n", "Black");
-                }
-                System.out.print("Choose the piece you want to move (first x then y): ");
                 mouseHandler.setClick(false);
-                System.out.println(mouseHandler.getClick());
-
                 while (!mouseHandler.getClick()){
-                    System.out.println(mouseHandler.getClick());
+                    System.out.print("");}
+                System.out.println(" ");
 
-                }
                 x1 = mouseHandler.getX();
                 y1 = mouseHandler.getY();
                 mouseHandler.setClick(false);
-                //System.out.println("FUCCCCK");
+
+
             } while (!board.myPiece(x1, y1, white));
 
 
             Piece piece = board.getPieceAtPos(x1,y1);
-            System.out.println(piece.getType());
+            System.out.printf("Type: %20s X: %3d Y: %3d", piece.getType(),piece.getX(),piece.getY());
+
             int x2;
             int y2;
 
-            do {System.out.print("Choose the place you want to move it(first x then y): ");
+            do {
                 while (!mouseHandler.getClick()){
-                    System.out.println(mouseHandler.getClick());
-                    System.out.println("HOLYFUCK");
-
+                    System.out.print("");
                 }
+                System.out.println(" ");
                 x2 = mouseHandler.getX();
                 y2 = mouseHandler.getY();
                 mouseHandler.setClick(false);
+
             } while (!piece.isPossible(x2,y2));
 
-            System.out.println("MOVE");
             piece.move(x2,y2);
 
             board.printBoard();
@@ -90,6 +95,7 @@ public class GameEngine {
                 color = Color.white;
             }
 
+
             if (board.isCheck(color))
                 if (board.isCheckmate(color)){
                     if(white){
@@ -97,17 +103,22 @@ public class GameEngine {
                     }else{
                         System.out.printf("%s won!\n", "Black");
                     }
-                    break;
+                    System.exit(1);
                 }
                 else {
                     if(white){
-                        System.out.printf("Watch out Black, you are body checked\n");
+                        System.out.printf("Watch out Black, you are body check\n");
                     }else{
-                        System.out.printf("Watch out White, you are body checked\n");
+                        System.out.printf("Watch out White, you are body check\n");
                     }
+
+
                 }
-            else if (board.isTie(color))
+            else if (board.isTie(color)) {
                 System.out.printf("It is a tie!\n");
+                System.exit(1);
+            }
+
         } while (true);
     }
 

@@ -1,6 +1,7 @@
 package Pieces;
 
 import Essentials.Board;
+import Essentials.GameEngine;
 import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 import javax.imageio.ImageIO;
@@ -11,6 +12,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+import static Essentials.GameEngine.white;
 import static java.lang.Math.*;
 
 /**
@@ -24,7 +26,7 @@ public abstract class Piece {
         this.color = color;
         this.type = type;
     }
-
+    protected boolean firstMove = true;
     public int x;
     public int y;
 
@@ -113,9 +115,11 @@ public abstract class Piece {
         }
         return true;
     }
-
+    public int getX() {return this.x;}
+    public int getY() {return this.y;}
 
     public void move(int x, int y) {
+        firstMove = false;
         Board.getInstance().moveXtoY(this.x,this.y,x,y);
         this.x=x;
         this.y=y;
@@ -139,6 +143,8 @@ public abstract class Piece {
                 return false;
             }
         }
+
+
         //IF it is a legal move for the specific piece
         if (!isLegal(x,y)){
             return false;

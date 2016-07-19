@@ -10,8 +10,6 @@ import java.util.Arrays;
  */
 public class Pawn extends Piece {
 
-    private boolean firstMove = true;
-
     public Pawn(int x, int y, Color color) {
         super(x, y, color, "Pawn");
         findImage();
@@ -40,7 +38,6 @@ public class Pawn extends Piece {
                     }
                     if(firstMove) {
                         legalP1[legalP1.length-1] = legalP1[0];
-                        firstMove = false;
                     }
                     return true;
                 }
@@ -60,7 +57,6 @@ public class Pawn extends Piece {
                     }
                     if(firstMove) {
                         legalP2[legalP2.length-1] = legalP2[0];
-                        firstMove = false;
                     }
                     return true;
                 }

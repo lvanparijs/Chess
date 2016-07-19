@@ -14,7 +14,6 @@ public class Main extends JFrame{
 
     public static void main(String[] args)
     {
-
         Board board = Board.getInstance();
         MouseHandler mouseHandler = new MouseHandler();
         GameEngine gameLoop = new GameEngine(mouseHandler);

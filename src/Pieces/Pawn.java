@@ -19,11 +19,7 @@ public class Pawn extends Piece {
     public int[][] legalP2 = {{0,1},{1,1},{-1,1},{0,2}};
     public boolean isLegal(int x, int y){
         int [] displacement = {x-this.x, y-this.y};
-        //System.out.println(displacement.toString());
-        /*for(int i = 0; i < displacement.length; i++){
-            System.out.print(displacement[i]+" ");
-        }*/
-        //System.out.println(legalP1.toString());
+
         if (color == Color.white){
             for(int i = 0; i < legalP1.length; i++){
                 if(legalP1[i][0] == displacement[0] && legalP1[i][1] == displacement[1]) {
@@ -31,10 +27,12 @@ public class Pawn extends Piece {
                         if(!Board.getInstance().isOccupied(x,y)){
                             return false;
                         }
-                    }else if(i == 0 || (!firstMove && i == 3)){
+                    }else if(i == 0){
                         if(Board.getInstance().isOccupied(x,y)){
                             return false;
                         }
+                    }else if((!firstMove && i == 3)){
+                        return false;
                     }
                     if(firstMove) {
                         legalP1[legalP1.length-1] = legalP1[0];
@@ -50,10 +48,12 @@ public class Pawn extends Piece {
                         if(!Board.getInstance().isOccupied(x,y)){
                             return false;
                         }
-                    }else if(i == 0 || (!firstMove && i == 3)){
+                    }else if(i == 0){
                         if(Board.getInstance().isOccupied(x,y)){
                             return false;
                         }
+                    }else if((!firstMove && i == 3)){
+                        return false;
                     }
                     if(firstMove) {
                         legalP2[legalP2.length-1] = legalP2[0];

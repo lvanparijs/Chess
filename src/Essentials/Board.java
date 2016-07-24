@@ -75,22 +75,22 @@ public class Board {
         spaces[7][1] = new Pawn(7,1,Color.black);
 
 
-        spaces[0][7] = new Rook(0,7,Color.white);
-        spaces[1][7] = new Horse(1,7,Color.white);
-        spaces[2][7] = new Bishop(2,7,Color.white);
-        spaces[3][7] = new Queen(3,7,Color.white);
+        //spaces[0][7] = new Rook(0,7,Color.white);
+        //spaces[1][7] = new Horse(1,7,Color.white);
+        //spaces[2][7] = new Bishop(2,7,Color.white);
+        //spaces[3][7] = new Queen(3,7,Color.white);
         spaces[4][7] = new King(4,7,Color.white);
-        spaces[5][7] = new Bishop(5,7,Color.white);
-        spaces[6][7] = new Horse(6,7,Color.white);
-        spaces[7][7] = new Rook(7,7,Color.white);
-        spaces[0][6] = new Pawn(0,6,Color.white);
-        spaces[1][6] = new Pawn(1,6,Color.white);
-        spaces[2][6] = new Pawn(2,6,Color.white);
-        spaces[3][6] = new Pawn(3,6,Color.white);
-        spaces[4][6] = new Pawn(4,6,Color.white);
-        spaces[5][6] = new Pawn(5,6,Color.white);
-        spaces[6][6] = new Pawn(6,6,Color.white);
-        spaces[7][6] = new Pawn(7,6,Color.white);
+        //spaces[5][7] = new Bishop(5,7,Color.white);
+        //spaces[6][7] = new Horse(6,7,Color.white);
+        //spaces[7][7] = new Rook(7,7,Color.white);
+        //spaces[0][6] = new Pawn(0,6,Color.white);
+        //spaces[1][6] = new Pawn(1,6,Color.white);
+        //spaces[2][6] = new Pawn(2,6,Color.white);
+        //spaces[3][6] = new Pawn(3,6,Color.white);
+        //spaces[4][6] = new Pawn(4,6,Color.white);
+        //spaces[5][6] = new Pawn(5,6,Color.white);
+        //spaces[6][6] = new Pawn(6,6,Color.white);
+        //spaces[7][6] = new Pawn(7,6,Color.white);
 
     }
 

@@ -20,13 +20,7 @@ public class GraphicsEngine extends JPanel {
     int sqSize = squareSize;
 
     public GraphicsEngine() {
-        timer = new Timer();
-        timer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                repaint();
-            }
-        },0,17);
+
     }
     @Override
     public void paintComponent(Graphics g){

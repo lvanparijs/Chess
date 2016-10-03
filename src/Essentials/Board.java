@@ -57,40 +57,48 @@ public class Board {
     public void init(){
 
 
-        spaces[0][0] = new Rook(0,0,Color.black);
+        /*
         spaces[1][0] = new Horse(1,0,Color.black);
         spaces[2][0] = new Bishop(2,0,Color.black);
         spaces[3][0] = new Queen(3,0,Color.black);
-        spaces[4][0] = new King(4,0,Color.black);
+
         spaces[5][0] = new Bishop(5,0,Color.black);
         spaces[6][0] = new Horse(6,0,Color.black);
+
+        */
+        spaces[0][0] = new Rook(0,0,Color.black);
         spaces[7][0] = new Rook(7,0,Color.black);
-        spaces[0][1] = new Pawn(0,1,Color.black);
+        spaces[4][0] = new King(4,0,Color.black);
+        /*spaces[0][1] = new Pawn(0,1,Color.black);
         spaces[1][1] = new Pawn(1,1,Color.black);
         spaces[2][1] = new Pawn(2,1,Color.black);
         spaces[3][1] = new Pawn(3,1,Color.black);
         spaces[4][1] = new Pawn(4,1,Color.black);
         spaces[5][1] = new Pawn(5,1,Color.black);
         spaces[6][1] = new Pawn(6,1,Color.black);
-        spaces[7][1] = new Pawn(7,1,Color.black);
+        spaces[7][1] = new Pawn(7,1,Color.black);*/
 
 
-        //spaces[0][7] = new Rook(0,7,Color.white);
-        //spaces[1][7] = new Horse(1,7,Color.white);
-        //spaces[2][7] = new Bishop(2,7,Color.white);
-        //spaces[3][7] = new Queen(3,7,Color.white);
-        spaces[4][7] = new King(4,7,Color.white);
-        //spaces[5][7] = new Bishop(5,7,Color.white);
-        //spaces[6][7] = new Horse(6,7,Color.white);
-        //spaces[7][7] = new Rook(7,7,Color.white);
-        //spaces[0][6] = new Pawn(0,6,Color.white);
-        //spaces[1][6] = new Pawn(1,6,Color.white);
-        //spaces[2][6] = new Pawn(2,6,Color.white);
-        //spaces[3][6] = new Pawn(3,6,Color.white);
-        //spaces[4][6] = new Pawn(4,6,Color.white);
-        //spaces[5][6] = new Pawn(5,6,Color.white);
-        //spaces[6][6] = new Pawn(6,6,Color.white);
-        //spaces[7][6] = new Pawn(7,6,Color.white);
+        /*
+        spaces[1][7] = new Horse(1,7,Color.white);
+        spaces[2][7] = new Bishop(2,7,Color.white);
+        spaces[3][7] = new Queen(3,7,Color.white);
+
+        spaces[5][7] = new Bishop(5,7,Color.white);
+        spaces[6][7] = new Horse(6,7,Color.white);
+
+        */
+        spaces[0][7] = new Rook(0,7,Color.white);
+        spaces[7][7] = new Rook(7,7,Color.white);
+        spaces[4][7] = new King(4,7,Color.white);/*
+        spaces[0][6] = new Pawn(0,6,Color.white);
+        spaces[1][6] = new Pawn(1,6,Color.white);
+        spaces[2][6] = new Pawn(2,6,Color.white);
+        spaces[3][6] = new Pawn(3,6,Color.white);
+        spaces[4][6] = new Pawn(4,6,Color.white);
+        spaces[5][6] = new Pawn(5,6,Color.white);
+        spaces[6][6] = new Pawn(6,6,Color.white);
+        spaces[7][6] = new Pawn(7,6,Color.white);*/
 
     }
 
@@ -288,5 +296,7 @@ public class Board {
     public void moveXtoY(int x1, int y1, int x2, int y2){
         spaces[x2][y2] = spaces[x1][y1];
         spaces[x1][y1] = null;
+        spaces[x2][y2].x = x2;
+        spaces[x2][y2].y = y2;
     }
 }

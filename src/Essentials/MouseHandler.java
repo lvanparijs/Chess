@@ -53,10 +53,8 @@ public class MouseHandler extends MouseAdapter{
     */
     @Override
     public void mousePressed(MouseEvent event){
-        mouseX = event.getX()-GraphicsSettings.leftSize;
-        mouseY = event.getY()-GraphicsSettings.topSize;
-        System.out.println("WTF");
-
+        mouseX = event.getX();
+        mouseY = event.getY();
         click = true;
     }
 

@@ -17,6 +17,7 @@ public class Pawn extends Piece {
 
     public int[][] legalP1 = {{0,-1},{1,-1},{-1,-1},{0,-2}};
     public int[][] legalP2 = {{0,1},{1,1},{-1,1},{0,2}};
+
     public boolean isLegal(int x, int y){
         int [] displacement = {x-this.x, y-this.y};
 
@@ -31,11 +32,12 @@ public class Pawn extends Piece {
                         if(Board.getInstance().isOccupied(x,y)){
                             return false;
                         }
-                    }else if((!firstMove && i == 3)){
-                        return false;
+                    }else if(i == 3){
+                        if(!firstMove)
+                            return false;
                     }
                     if(firstMove) {
-                        legalP1[legalP1.length-1] = legalP1[0];
+                        legalP1 = new int[][]{{0,-1},{1,-1},{-1,-1}};
                     }
                     return true;
                 }
@@ -52,11 +54,12 @@ public class Pawn extends Piece {
                         if(Board.getInstance().isOccupied(x,y)){
                             return false;
                         }
-                    }else if((!firstMove && i == 3)){
-                        return false;
+                    }else if(i == 3){
+                        if(!firstMove)
+                            return false;
                     }
                     if(firstMove) {
-                        legalP2[legalP2.length-1] = legalP2[0];
+                        legalP2 = new int[][]{{0,1},{1,1},{-1,1}};
                     }
                     return true;
                 }

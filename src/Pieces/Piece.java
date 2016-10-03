@@ -1,18 +1,14 @@
 package Pieces;
 
 import Essentials.Board;
-import Essentials.GameEngine;
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
-import java.awt.geom.AffineTransform;
-import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-import static Essentials.GameEngine.white;
 import static java.lang.Math.*;
 
 /**
@@ -26,6 +22,7 @@ public abstract class Piece {
         this.color = color;
         this.type = type;
     }
+
     protected boolean firstMove = true;
     public int x;
     public int y;
@@ -60,7 +57,7 @@ public abstract class Piece {
                 }
             }
             if (x==this.x && y>this.y){
-                for (int i = this.y +1; i<y; i++){
+                for (int i = this.y+1; i<y; i++){
                     if (Board.getInstance().isOccupied(x,i)){
                         return false;
                     }
@@ -107,8 +104,6 @@ public abstract class Piece {
                 }
             }
 
-
-
         }
         else {
             return true;
@@ -121,8 +116,6 @@ public abstract class Piece {
     public void move(int x, int y) {
         firstMove = false;
         Board.getInstance().moveXtoY(this.x,this.y,x,y);
-        this.x=x;
-        this.y=y;
     }
 
     public abstract boolean isLegal(int x, int y );
@@ -144,8 +137,7 @@ public abstract class Piece {
             }
         }
 
-
-        //IF it is a legal move for the specific piece
+        //IF it is a legal move for the specific piece, ie. if its moveset allows it to move there
         if (!isLegal(x,y)){
             return false;
         }
@@ -174,8 +166,13 @@ public abstract class Piece {
                 username = "darius";
 
             }
+            //S//ystem.out.println(getClass().getClassLoader());
+           // ImageIcon imgIcon = new ImageIcon(getClass().getClassLoader().getResource("res/"+type+col+".png"));
             this.img = ImageIO.read(new File("C:\\Users\\"+username+"\\IdeaProjects\\Chess\\res/"+type+col+".png"));
-        }catch (IOException e){
+            //ImageIcon yourImage;
+            //Image image = imgIcon.getImage();
+            //BufferedImage img = (BufferedImage) image;
+        }catch (Exception e){
             System.out.println("File Not Found");
         }
     }

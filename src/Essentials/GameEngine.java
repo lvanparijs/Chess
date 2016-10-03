@@ -66,7 +66,7 @@ public class GameEngine {
 
 
             Piece piece = board.getPieceAtPos(x1,y1);
-            System.out.printf("Type: %20s X: %3d Y: %3d", piece.getType(),piece.getX(),piece.getY());
+            System.out.printf("Type: %20s X: %d Y: %d", piece.getType(),piece.getX(),piece.getY());
 
             int x2;
             int y2;

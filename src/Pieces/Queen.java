@@ -11,7 +11,7 @@ import java.util.Arrays;
  * Created by Locoge on 3-7-2016.
  */
 public class Queen extends Piece {
-    public Queen(int x, int y, Color color) {
+    public Queen(int x, int y, boolean color) {
         super(x, y, color, "Queen");
         findImage();
         legal = new int[][] {{0,1}, {0,2}, {0,3},{0,4}, {0,5}, {0,6}, {0,7},

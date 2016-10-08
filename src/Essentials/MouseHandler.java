@@ -3,6 +3,8 @@ package Essentials;
 import Pieces.Piece;
 import com.sun.corba.se.impl.orbutil.graph.Graph;
 
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -13,18 +15,17 @@ import java.awt.event.MouseListener;
 public class MouseHandler extends MouseAdapter{
 
     private int counter = 0;
-    private int mouseX,mouseY;
-    private boolean click = false;
+    public static int mouseX,mouseY;
+    public int x1,x2,y1,y2;
+    boolean sendMove = false;
     public Board board = Board.getInstance();
     Piece piece;
-    GraphicsEngine graphicsEngine;
+    GraphicsEngine ge;
     GameEngine gameEngine;
 
-    //boolean white = gameEngine.white;
 
-    public MouseHandler(){
-        //this.gameEngine = gameEngine;
-        //this.graphicsEngine = graphicsEngine;
+    public MouseHandler(GraphicsEngine ge){
+        this.ge = ge;
     }
 
     public int getX(){
@@ -35,32 +36,55 @@ public class MouseHandler extends MouseAdapter{
             return (int)Math.floor(mouseY/GraphicsSettings.squareSize);
         }
 
-    public void setClick(boolean b) {
-        click = b;
+    public int getMouseX(){
+        return mouseX;
     }
 
-    public boolean getClick() {
-        return click;
+    public int getMouseY(){
+        return mouseY;
     }
-    /*
-    @Override
-    public void mouseClicked(MouseEvent event) {
-        mouseX = event.getX()-GraphicsSettings.leftSize;
-        mouseY = event.getY()-GraphicsSettings.topSize;
-        System.out.println("WTF");
-        click = true;
-    }
-    */
+
     @Override
     public void mousePressed(MouseEvent event){
+        sendMove = false;
+        System.out.println("press");
         mouseX = event.getX();
         mouseY = event.getY();
-        click = true;
+        Piece tmp = Board.getInstance().getPieceAtPos(getX(),getY());
+        if(tmp != null){
+            piece = tmp;
+            piece.dragged = true;
+            x1 = getX();
+            y1 = getY();
+        }
     }
 
-    /*
+    public Piece getSelectedPiece(){
+        return piece;
+    }
+
+
     @Override
     public void mouseReleased(MouseEvent e) {
+        System.out.println("release");
+        if(piece != null){
+            mouseX = e.getX();
+            mouseY = e.getY();
+            piece.dragged = false;
+            if(piece.isPossible(getX(),getY())){
+                x2 = getX();
+                y2 = getY();
+                sendMove = true;
+                piece = null;
+            }
+        }
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e){
+        mouseX = e.getX();
+        mouseY = e.getY();
+        ge.repaint();
 
     }
 
@@ -73,5 +97,4 @@ public class MouseHandler extends MouseAdapter{
     public void mouseExited(MouseEvent e) {
 
     }
-    */
 }

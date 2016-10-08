@@ -13,7 +13,7 @@ public class King extends Piece {
     public int[][] castlingK = {{-2, 0}, {2, 0}};
 
 
-    public King(int x, int y, Color color) {
+    public King(int x, int y, boolean color) {
         super(x, y, color, "King");
         findImage();
         legal = new int[][] {{1, 1}, {1, 0}, {0, 1}, {1, -1}, {-1, -1}, {-1, 0}, {0, -1}, {-1, 1}};

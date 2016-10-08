@@ -16,7 +16,7 @@ import static java.lang.Math.*;
  */
 public abstract class Piece {
 
-    public Piece(int x, int y, Color color, String type){
+    public Piece(int x, int y, boolean color, String type){
         this.x = x;
         this.y = y;
         this.color = color;
@@ -24,21 +24,15 @@ public abstract class Piece {
     }
 
     protected boolean firstMove = true;
+    public boolean dragged = false;
+    boolean color;//True means white, false means black
     public int x;
     public int y;
-
-    Color color;
-
-    String type;
-
-    BufferedImage img;
-
     public int[][] legal;
 
-    public String getType(){
-        return this.type;
-    }
-    public Color getColor() {return this.color; }
+    String type;
+    public BufferedImage img;
+
     public boolean isPathFree(int x, int y){
 
         if (x-this.x==0 || y-this.y==0){
@@ -110,13 +104,6 @@ public abstract class Piece {
         }
         return true;
     }
-    public int getX() {return this.x;}
-    public int getY() {return this.y;}
-
-    public void move(int x, int y) {
-        firstMove = false;
-        Board.getInstance().moveXtoY(this.x,this.y,x,y);
-    }
 
     public abstract boolean isLegal(int x, int y );
 
@@ -153,25 +140,24 @@ public abstract class Piece {
             return false;
     }
 
+    public void move(int x, int y) {
+        firstMove = false;
+        Board.getInstance().moveXtoY(this.x,this.y,x,y);
+    }
+
     public void findImage(){
         String col;
-        if(color == Color.BLACK){
-            col = "Black";
-        }else{
+        if(color){
             col = "White";
+        }else{
+            col = "Black";
         }
         try {
             String username = System.getProperty("user.name");
             if (username.contains("Locoge")){
                 username = "darius";
-
             }
-            //S//ystem.out.println(getClass().getClassLoader());
-           // ImageIcon imgIcon = new ImageIcon(getClass().getClassLoader().getResource("res/"+type+col+".png"));
             this.img = ImageIO.read(new File("C:\\Users\\"+username+"\\IdeaProjects\\Chess\\res/"+type+col+".png"));
-            //ImageIcon yourImage;
-            //Image image = imgIcon.getImage();
-            //BufferedImage img = (BufferedImage) image;
         }catch (Exception e){
             System.out.println("File Not Found");
         }
@@ -179,5 +165,12 @@ public abstract class Piece {
 
     public void drawPiece(Graphics2D g2d, int screenX, int screenY){
         g2d.drawImage(img,screenX,screenY,img.getWidth(),img.getHeight(),null);
+    }
+
+    public int getX() {return this.x;}
+    public int getY() {return this.y;}
+    public boolean getColor() {return this.color; }
+    public String getType(){
+        return this.type;
     }
 }

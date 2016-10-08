@@ -10,7 +10,7 @@ import java.util.Arrays;
  */
 public class Pawn extends Piece {
 
-    public Pawn(int x, int y, Color color) {
+    public Pawn(int x, int y, boolean color) {
         super(x, y, color, "Pawn");
         findImage();
     }
@@ -21,7 +21,7 @@ public class Pawn extends Piece {
     public boolean isLegal(int x, int y){
         int [] displacement = {x-this.x, y-this.y};
 
-        if (color == Color.white){
+        if (color){
             for(int i = 0; i < legalP1.length; i++){
                 if(legalP1[i][0] == displacement[0] && legalP1[i][1] == displacement[1]) {
                     if(i == 1 || i == 2){

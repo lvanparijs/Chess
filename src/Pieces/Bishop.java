@@ -8,7 +8,7 @@ import java.util.Arrays;
  * Created by Locoge on 3-7-2016.
  */
 public class Bishop extends Piece{
-    public Bishop(int x, int y, Color color) {
+    public Bishop(int x, int y, boolean color) {
         super(x, y, color, "Bishop");
         findImage();
         legal = new int[][] {   {1,1}, {2,2}, {3,3}, {4,4}, {5,5}, {6,6}, {7,7},

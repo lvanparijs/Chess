@@ -34,7 +34,6 @@ public class GameEngine {
     boolean readMode;
 
     public GameEngine(MouseHandler mouseHandler){
-
         this.mouseHandler = mouseHandler;
 
     }
@@ -47,57 +46,29 @@ public class GameEngine {
         board.printBoard();
 
         do {
-            white = !white;
+            white = !white; //switches turns
 
-            int x1;
-            int y1;
-            do {
-                mouseHandler.setClick(false);
-                while (!mouseHandler.getClick()){
-                    System.out.print("");}
-                System.out.println(" ");
+            int x = -1;
+            int y = -1;
+            Piece piece = null;
 
-                x1 = mouseHandler.getX();
-                y1 = mouseHandler.getY();
-                mouseHandler.setClick(false);
+            while (!mouseHandler.sendMove){
 
+            }
 
-            } while (!board.myPiece(x1, y1, white));
+            piece = Board.getInstance().getPieceAtPos(mouseHandler.x1,mouseHandler.y1);
+            x = mouseHandler.x2;
+            y = mouseHandler.y2;
 
+            mouseHandler.sendMove = false;
 
-            Piece piece = board.getPieceAtPos(x1,y1);
-            System.out.printf("Type: %20s X: %d Y: %d", piece.getType(),piece.getX(),piece.getY());
-
-            int x2;
-            int y2;
-
-            do {
-                while (!mouseHandler.getClick()){
-                    System.out.print("");
-                }
-                System.out.println(" ");
-                x2 = mouseHandler.getX();
-                y2 = mouseHandler.getY();
-                mouseHandler.setClick(false);
-
-            } while (!piece.isPossible(x2,y2));
-
-            piece.move(x2,y2);
+            piece.move(x,y);
 
             board.printBoard();
 
-            //nodig om mijn isCheck method te gebruiken, color wordt de kleur van degene die niet aan de beurt is
-            Color color;
-            if (white){
-                color = Color.black;
-            }
-            else {
-                color = Color.white;
-            }
 
-
-            if (board.isCheck(color))
-                if (board.isCheckmate(color)){
+            if (board.isCheck(!white))
+                if (board.isCheckmate(!white)){
                     if(white){
                         System.out.printf("%s won!\n", "White");
                     }else{
@@ -107,19 +78,23 @@ public class GameEngine {
                 }
                 else {
                     if(white){
-                        System.out.printf("Watch out Black, you are body check\n");
+                        System.out.printf("Watch out Black, you are check\n");
                     }else{
-                        System.out.printf("Watch out White, you are body check\n");
+                        System.out.printf("Watch out White, you are check\n");
                     }
 
 
                 }
-            else if (board.isTie(color)) {
+            else if (board.isTie(!white)) {
                 System.out.printf("It is a tie!\n");
                 System.exit(1);
             }
 
         } while (true);
+    }
+
+    public void selectedPiece(Piece p){
+
     }
 
 }

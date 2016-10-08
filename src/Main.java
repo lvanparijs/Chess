@@ -20,10 +20,11 @@ public class Main extends JFrame{
     public static void main(String[] args)
     {
         Board board = Board.getInstance();
-        MouseHandler mouseHandler = new MouseHandler();
-        GameEngine gameLoop = new GameEngine(mouseHandler);
-        GraphicsEngine graphicsEngine = new GraphicsEngine();
         MenuPanel menuPanel = new MenuPanel();
+
+        GraphicsEngine graphicsEngine = new GraphicsEngine();
+        MouseHandler mouseHandler = new MouseHandler(graphicsEngine);
+        GameEngine gameLoop = new GameEngine(mouseHandler);
         Main frame = new Main(graphicsEngine,mouseHandler);
 
         gameLoop.start();
@@ -38,6 +39,7 @@ public class Main extends JFrame{
         this.setResizable(false);
         this.add(panel);
         panel.addMouseListener(mouseHandler);
+        panel.addMouseMotionListener(mouseHandler);
         this.setVisible(true);
         timer = new java.util.Timer();
         timer.scheduleAtFixedRate(new TimerTask() {

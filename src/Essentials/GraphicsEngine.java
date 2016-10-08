@@ -31,17 +31,26 @@ public class GraphicsEngine extends JPanel {
 
         Board board = Board.getInstance();
 
-        for(int i = 0; i < board.getSize(); i++){
-            for(int j = 0; j < board.getSize(); j++){
-                if((i+j)%2==0){
+        for(int i = 0; i < board.getSize(); i++) {
+            for (int j = 0; j < board.getSize(); j++) {
+                if ((i + j) % 2 == 0) {
                     g2d.setColor(GraphicsSettings.whiteField);
-                }else{
+                } else {
                     g2d.setColor(GraphicsSettings.blackField);
                 }
-                g2d.fillRect(sqSize*i,sqSize*j,sqSize,sqSize);
+                g2d.fillRect(sqSize * i, sqSize * j, sqSize, sqSize);
+            }
+        }
+
+        for(int i = 0; i < board.getSize(); i++) {
+            for (int j = 0; j < board.getSize(); j++) {
                 Piece curPiece = board.getPieceAtPos(i,j);
                 if(curPiece instanceof Piece) {
-                    board.spaces[i][j].drawPiece(g2d, sqSize * i, sqSize * j);
+                    if(curPiece.dragged){
+                        curPiece.drawPiece(g2d, MouseHandler.mouseX-(int)(curPiece.img.getWidth()/2),MouseHandler.mouseY-(int)(curPiece.img.getHeight()/2));
+                    }else{
+                        curPiece.drawPiece(g2d, sqSize * i, sqSize * j);
+                    }
                 }
             }
         }

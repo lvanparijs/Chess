@@ -8,7 +8,7 @@ import java.util.Arrays;
  */
 public class Horse extends Piece {
 
-    public Horse(int x, int y, Color color) {
+    public Horse(int x, int y, boolean color) {
         super(x, y, color, "Horse");
         findImage();
         legal = new int[][]{ {1,2}, {1,-2}, {-1,2}, {-1,-2}, {2,1}, {2,-1}, {-2,1}, {-2,-1} };

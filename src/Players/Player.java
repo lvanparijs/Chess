@@ -8,11 +8,12 @@ import java.awt.*;
 public class Player {
     public Color color;
     public String type;
+    public boolean isCheck;
 
     public Player(Color color, String type) {
         this.color=color;
         this.type=type;
-
+        this.isCheck = false;
     }
     public Color getColor(){
         return this.color;

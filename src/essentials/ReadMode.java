@@ -1,4 +1,4 @@
-package Essentials;
+package essentials;
 
 import java.io.IOException;
 import java.nio.file.Paths;

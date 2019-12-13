@@ -1,8 +1,4 @@
-package Pieces;
-
-import java.awt.Color;
-import java.util.ArrayList;
-import java.util.Arrays;
+package pieces;
 
 /**
  * Created by Locoge on 3-7-2016.

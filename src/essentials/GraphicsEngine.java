@@ -1,14 +1,13 @@
-package Essentials;
+package essentials;
 
-import Pieces.Piece;
+import pieces.Piece;
 
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.Timer;
-import java.util.TimerTask;
 
-import static Essentials.GraphicsSettings.squareSize;
+import static essentials.GraphicsSettings.squareSize;
 
 /**
  * Created by Locoge on 3-7-2016.
@@ -47,9 +46,9 @@ public class GraphicsEngine extends JPanel {
                 Piece curPiece = board.getPieceAtPos(i,j);
                 if(curPiece instanceof Piece) {
                     if(curPiece.dragged){
-                        curPiece.drawPiece(g2d, MouseHandler.mouseX-(int)(curPiece.img.getWidth()/2),MouseHandler.mouseY-(int)(curPiece.img.getHeight()/2));
+                        curPiece.drawPiece(g2d, MouseHandler.mouseX-(int)(sqSize/2),MouseHandler.mouseY-(int)(sqSize/2),sqSize);
                     }else{
-                        curPiece.drawPiece(g2d, sqSize * i, sqSize * j);
+                        curPiece.drawPiece(g2d, sqSize * i, sqSize * j, sqSize);
                     }
                 }
             }

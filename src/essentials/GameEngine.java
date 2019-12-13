@@ -1,16 +1,11 @@
-package Essentials;
+package essentials;
 
-import Pieces.Piece;
-import Players.Human;
-import Players.Player;
+import pieces.Piece;
+import agents.Human;
+import agents.Player;
 
 import java.awt.*;
-import java.util.Scanner;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.TimeUnit;
 
-import static sun.misc.Version.println;
 
 /**
  * Created by Locoge on 3-7-2016.

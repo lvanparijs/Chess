@@ -1,9 +1,6 @@
-package Pieces;
+package pieces;
 
-import Essentials.Board;
-
-import java.awt.*;
-import java.util.Arrays;
+import essentials.Board;
 
 /**
  * Created by Locoge on 3-7-2016.

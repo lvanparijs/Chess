@@ -1,10 +1,7 @@
-package Essentials;
-
-import com.sun.scenario.effect.impl.sw.java.JSWBlend_COLOR_BURNPeer;
+package essentials;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.dnd.DropTarget;
 import java.awt.geom.Ellipse2D;
 
 /**

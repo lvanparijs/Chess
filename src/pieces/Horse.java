@@ -1,7 +1,4 @@
-package Pieces;
-
-import java.awt.*;
-import java.util.Arrays;
+package pieces;
 
 /**
  * Created by Locoge on 3-7-2016.

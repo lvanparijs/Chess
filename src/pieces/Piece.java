@@ -1,13 +1,11 @@
-package Pieces;
+package pieces;
 
-import Essentials.Board;
+import essentials.Board;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
 
 import static java.lang.Math.*;
 
@@ -163,8 +161,8 @@ public abstract class Piece {
         }
     }
 
-    public void drawPiece(Graphics2D g2d, int screenX, int screenY){
-        g2d.drawImage(img,screenX,screenY,img.getWidth(),img.getHeight(),null);
+    public void drawPiece(Graphics2D g2d, int screenX, int screenY, int size){
+        g2d.drawImage(img,screenX,screenY,size,size,null);
     }
 
     public int getX() {return this.x;}

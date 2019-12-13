@@ -1,20 +1,35 @@
-package Essentials;
+package essentials;
 
-import Pieces.*;
-import javafx.scene.paint.*;
+import pieces.*;
 
-import java.awt.*;
-import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Locoge on 3-7-2016.
  */
 public class Board {
 
-    private static Board board = new Board(); //Singleton design pattern
+    private static Board board = new Board(); //Singleton design pattern, only one board
 
     int size;
     Piece[][] spaces;
+
+    long P = 0b0000000000000000000000000000000000000000000000001111111100000000L;
+    long N = 0b0000000000000000000000000000000000000000000000000000000001000010L;
+    long B = 0b0000000000000000000000000000000000000000000000000000000000100100L;
+    long R = 0b0000000000000000000000000000000000000000000000000000000010000001L;
+    long K = 0b0000000000000000000000000000000000000000000000000000000000001000L;
+    long Q = 0b0000000000000000000000000000000000000000000000000000000000010000L;
+    long p = 0b0000000011111111000000000000000000000000000000000000000000000000L;
+    long n = 0b0100001000000000000000000000000000000000000000000000000000000000L;
+    long b = 0b0010010000000000000000000000000000000000000000000000000000000000L;
+    long r = 0b1000000100000000000000000000000000000000000000000000000000000000L;
+    long k = 0b0001000000000000000000000000000000000000000000000000000000000000L;
+    long q = 0b0000100000000000000000000000000000000000000000000000000000000000L;
+
+    long[] pieces = new long[]{P,N,B,R,K,Q,p,n,b,r,k,q};
+    String[] piecesNames = new String[]{"P","N","B","R","K","Q","p","n","b","r","k","q"};
 
     public static Board getInstance(){
         return board;
@@ -23,6 +38,31 @@ public class Board {
     public Board(){
         this.size = 8;
         spaces = new Piece[size][size];
+        //System.out.println(bitPositions(P));
+        //System.out.println(bitPositions(p));
+    }
+
+    private static List<Object[]> bitPos2BoardPos(List<Object[]> pos){
+        List<Object[]> positions = new ArrayList<>();
+        for(Object[] i : pos){
+            int horPos = (int)i[0]%8;
+            int verPos = (int)Math.floor((int)i[0]/8);
+            positions.add(new Object[]{horPos, verPos, i[1]});
+        }
+        return positions;
+    }
+
+    private static List<Object[]> bitPositions(long number, String name) {
+        List<Object[]> positions = new ArrayList<>();
+        int position = 1;
+        while (number != 0) {
+            if ((number & 1) != 0) {
+                positions.add(new Object[]{position-1, name});
+            }
+            position++;
+            number = number >>> 1;
+        }
+        return positions;
     }
 
     public boolean isOccupied(int x, int y){
@@ -30,6 +70,26 @@ public class Board {
             return false;
         else
             return true;
+    }
+
+    public void printBoard2(List<Object[]> pos){
+        System.out.print("0 1 2 3 4 5 6 7 \n");
+        for (int i=size-1; i>=0;i--){
+            for (int j=0; j<size;j++){
+                boolean found = false;
+                for(Object[] ia : pos){
+                    if((int)ia[0] == j && (int)ia[1] == i){
+                        System.out.print(ia[2]+" ");
+                        found = true;
+                    }
+                }
+                if(found == false){
+                    System.out.print("- ");
+                }
+            }
+            System.out.println(i);
+        }
+        System.out.println();
     }
 
 
@@ -47,6 +107,14 @@ public class Board {
             System.out.println(i);
         }
         System.out.println();
+        List<Object[]> boardState = new ArrayList();
+        for(int p = 0; p < pieces.length; p++){
+            List<Object[]> tmpState = bitPos2BoardPos(bitPositions(pieces[p],piecesNames[p]));
+            if(tmpState.size() != 0){
+                boardState.addAll(tmpState);
+            }
+        }
+        printBoard2(boardState);
     }
 
 

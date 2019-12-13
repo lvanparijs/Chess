@@ -1,13 +1,9 @@
-package Essentials;
+package essentials;
 
-import Pieces.Piece;
-import com.sun.corba.se.impl.orbutil.graph.Graph;
+import pieces.Piece;
 
-import javax.swing.*;
-import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 /**
  * Created by lvanp on 11/07/2016.

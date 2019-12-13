@@ -1,6 +1,4 @@
-package Players;
-
-import Players.Player;
+package agents;
 
 import java.awt.*;
 

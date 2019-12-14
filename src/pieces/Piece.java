@@ -36,28 +36,28 @@ public abstract class Piece {
         if (x-this.x==0 || y-this.y==0){
             if (y==this.y && x>this.x){
                 for (int i = this.x+1; i<x;i++){
-                    if (Board.getInstance().isOccupied(i,y)){
+                    if (Board.getInstance().isOccupied(i,y,0)){ //TODO: remove the 0, replace by proper check
                         return false;
                     }
                 }
             }
             if (y==this.y && x<this.x){
                 for (int i = this.x-1; i>x;i--){
-                    if (Board.getInstance().isOccupied(i,y)){
+                    if (Board.getInstance().isOccupied(i,y,0)){ //TODO: remove the 0, replace by proper check
                         return false;
                     }
                 }
             }
             if (x==this.x && y>this.y){
                 for (int i = this.y+1; i<y; i++){
-                    if (Board.getInstance().isOccupied(x,i)){
+                    if (Board.getInstance().isOccupied(x,i, 0)){
                         return false;
                     }
                 }
             }
             if (x==this.x && y<this.y){
                 for (int i = this.y -1; i>y; i--){
-                    if (Board.getInstance().isOccupied(x,i)){
+                    if (Board.getInstance().isOccupied(x,i, 0)){
                         return false;
                     }
                 }
@@ -68,21 +68,21 @@ public abstract class Piece {
             int lenPath = abs(x-this.x);
             if (y>this.y && x>this.x){
                 for (int i=1; i<lenPath; i++){
-                    if (Board.getInstance().isOccupied(this.x+i,this.y+i)){
+                    if (Board.getInstance().isOccupied(this.x+i,this.y+i, 0)){
                         return false;
                     }
                 }
             }
             if (y<this.y && x>this.x) {
                 for (int i = 1; i < lenPath; i++) {
-                    if (Board.getInstance().isOccupied(this.x + i, this.y - i)) {
+                    if (Board.getInstance().isOccupied(this.x + i, this.y - i, 0)) {
                         return false;
                     }
                 }
             }
             if (y<this.y && x<this.x){
                 for (int i=1; i<lenPath;i++){
-                    if (Board.getInstance().isOccupied(this.x-i,this.y-i)){
+                    if (Board.getInstance().isOccupied(this.x-i,this.y-i, 0)){
                         return false;
                     }
                 }
@@ -90,7 +90,7 @@ public abstract class Piece {
             }
             if (y>this.y && x<this.x){
                 for (int i=1; i<lenPath;i++){
-                    if (Board.getInstance().isOccupied(this.x-i,this.y+i)){
+                    if (Board.getInstance().isOccupied(this.x-i,this.y+i, 0)){
                         return false;
                     }
                 }

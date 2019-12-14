@@ -36,11 +36,11 @@ public class King extends Piece {
                 if (castlingK[i][0] == displacement[0] && castlingK[i][1] == displacement[1]) {//Check if the king wants to castle
                     if (!Board.getInstance().isCheck(color)) {//Not currently in check
                         if (i == 0) {//If going left
-                            if (Board.getInstance().isOccupied(0, y)) {
+                            if (Board.getInstance().isOccupied(0, y, 0)) {
                                 Piece r = Board.getInstance().getPieceAtPos(0, y);
                                 if (r instanceof Rook && ((Rook) r).firstMove) {
                                     for (int k = 1; k < this.x; k++) {
-                                        if (Board.getInstance().isOccupied(k, y) || Board.getInstance().isPlaceCheck(k, y, color)) {
+                                        if (Board.getInstance().isOccupied(k, y, 0) || Board.getInstance().isPlaceCheck(k, y, color)) {
                                             return false;
                                         }
                                     }
@@ -50,11 +50,11 @@ public class King extends Piece {
                                 }
                             }
                         } else if (i == 1) {
-                            if (Board.getInstance().isOccupied(7, y)) {
+                            if (Board.getInstance().isOccupied(7, y, 0)) {
                                 Piece p = Board.getInstance().getPieceAtPos(7, y);
                                 if (p instanceof Rook && ((Rook) p).firstMove) {
                                     for (int k = 6; k > this.x; k--) {
-                                        if (Board.getInstance().isOccupied(k, y) || Board.getInstance().isPlaceCheck(k, y, color)) {
+                                        if (Board.getInstance().isOccupied(k, y, 0) || Board.getInstance().isPlaceCheck(k, y, color)) {
                                             return false;
                                         }
                                     }

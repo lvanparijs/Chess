@@ -40,19 +40,22 @@ public class GraphicsEngine extends JPanel {
                 g2d.fillRect(sqSize * i, sqSize * j, sqSize, sqSize);
             }
         }
-
-        for(int i = 0; i < board.getSize(); i++) {
+        board.paintBoard(g2d, sqSize, sqSize, sqSize);
+        /*for(int i = 0; i < board.getSize(); i++) {
             for (int j = 0; j < board.getSize(); j++) {
-                Piece curPiece = board.getPieceAtPos(i,j);
+                if(board.isOccupied(i,j,0) || board.isOccupied(i,j,1)){
+
+                }
+                /*Piece curPiece = board.getPieceAtPos(i,j);
                 if(curPiece instanceof Piece) {
-                    if(curPiece.dragged){
-                        curPiece.drawPiece(g2d, MouseHandler.mouseX-(int)(sqSize/2),MouseHandler.mouseY-(int)(sqSize/2),sqSize);
+                    if(false){
+                        board.paintBoard(g2d, MouseHandler.mouseX-(int)(sqSize/2),MouseHandler.mouseY-(int)(sqSize/2),sqSize);
                     }else{
-                        curPiece.drawPiece(g2d, sqSize * i, sqSize * j, sqSize);
+                        board.paintBoard(g2d, sqSize * i, sqSize * j, sqSize);
                     }
                 }
             }
-        }
+        }*/
     }
 
     public void refresh(){

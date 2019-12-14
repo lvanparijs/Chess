@@ -22,11 +22,11 @@ public class Pawn extends Piece {
             for(int i = 0; i < legalP1.length; i++){
                 if(legalP1[i][0] == displacement[0] && legalP1[i][1] == displacement[1]) {
                     if(i == 1 || i == 2){
-                        if(!Board.getInstance().isOccupied(x,y)){
+                        if(!Board.getInstance().isOccupied(x,y, 0)){
                             return false;
                         }
                     }else if(i == 0){
-                        if(Board.getInstance().isOccupied(x,y)){
+                        if(Board.getInstance().isOccupied(x,y, 0)){
                             return false;
                         }
                     }else if(i == 3){
@@ -44,11 +44,11 @@ public class Pawn extends Piece {
             for(int i = 0; i < legalP2.length; i++){
                 if(legalP2[i][0] == displacement[0] && legalP2[i][1] == displacement[1]) {
                     if(i == 1 || i == 2){
-                        if(!Board.getInstance().isOccupied(x,y)){
+                        if(!Board.getInstance().isOccupied(x,y, 0)){
                             return false;
                         }
                     }else if(i == 0){
-                        if(Board.getInstance().isOccupied(x,y)){
+                        if(Board.getInstance().isOccupied(x,y, 0)){
                             return false;
                         }
                     }else if(i == 3){
